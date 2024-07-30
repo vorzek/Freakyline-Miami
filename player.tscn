@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dhgb3d43pomnh"]
+[gd_scene load_steps=24 format=3 uid="uid://dhgb3d43pomnh"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_3mfl8"]
 [ext_resource type="Texture2D" uid="uid://wxjcbe4kpuh1" path="res://Assets/Weapons/Guns/1 Characters/3 Cyborg/Idle1.png" id="1_nry8j"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dwyi7na215vmo" path="res://Assets/Weapons/Guns/3 Hands/3 Cyborg/3.png" id="3_0igx5"]
 [ext_resource type="Texture2D" uid="uid://e48o7uhmoxxi" path="res://Assets/Weapons/Guns/1 Characters/3 Cyborg/Run1.png" id="4_tw2bh"]
 [ext_resource type="Texture2D" uid="uid://b8ljs1up5utj8" path="res://Assets/Weapons/Guns/4 Shoot_effects/6_1.png" id="7_sak2p"]
+[ext_resource type="Texture2D" uid="uid://cifenjurd8gxj" path="res://Assets/Weapons/Guns/2 Guns/10_1.png" id="8_vprq8"]
 
 [sub_resource type="Animation" id="Animation_gy6s0"]
 resource_name = "GunSmokeIdle"
@@ -53,29 +54,12 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_0vels"]
-resource_name = "Idle"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cyborg/CyborgIdle:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
 [sub_resource type="Animation" id="Animation_cr2up"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Cyborg/CyborgIdle:frame")
+tracks/0/path = NodePath("Cyborg/CyborgIdlePistol:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -87,7 +71,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Cyborg/CyborgRun:frame")
+tracks/1/path = NodePath("Cyborg/CyborgRunPistol:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -132,15 +116,90 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Cyborg/CyborgIdleShotgun:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Cyborg/CyborgRunShotgun:frame")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_0vels"]
+resource_name = "IdlePistol"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cyborg/CyborgIdlePistol:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
 
 [sub_resource type="Animation" id="Animation_a3ktc"]
-resource_name = "Run"
+resource_name = "RunPistol"
 length = 0.5
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Cyborg/CyborgRun:frame")
+tracks/0/path = NodePath("Cyborg/CyborgRunPistol:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_8fqe0"]
+resource_name = "IdleShotgun"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cyborg/CyborgIdleShotgun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_novyn"]
+resource_name = "RunShotgun"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cyborg/CyborgRunShotgun:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -154,9 +213,11 @@ tracks/0/keys = {
 _data = {
 "GunSmokeIdle": SubResource("Animation_gy6s0"),
 "GunSmokeRun": SubResource("Animation_qx2a5"),
-"Idle": SubResource("Animation_0vels"),
+"IdlePistol": SubResource("Animation_0vels"),
+"IdleShotgun": SubResource("Animation_8fqe0"),
 "RESET": SubResource("Animation_cr2up"),
-"Run": SubResource("Animation_a3ktc")
+"RunPistol": SubResource("Animation_a3ktc"),
+"RunShotgun": SubResource("Animation_novyn")
 }
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ud4f6"]
@@ -199,14 +260,15 @@ libraries = {
 }
 speed_scale = 0.7
 
-[node name="CyborgIdle" type="Sprite2D" parent="Cyborg"]
+[node name="CyborgIdlePistol" type="Sprite2D" parent="Cyborg"]
 unique_name_in_owner = true
+visible = false
 texture_filter = 1
 texture = ExtResource("1_nry8j")
 offset = Vector2(11, 0)
 hframes = 4
 
-[node name="gun" type="Sprite2D" parent="Cyborg/CyborgIdle"]
+[node name="pistol" type="Sprite2D" parent="Cyborg/CyborgIdlePistol"]
 z_index = -1
 texture_filter = 1
 position = Vector2(10, -3.33333)
@@ -214,21 +276,22 @@ scale = Vector2(0.5625, 0.5625)
 texture = ExtResource("2_lurov")
 offset = Vector2(11, 0)
 
-[node name="arm" type="Sprite2D" parent="Cyborg/CyborgIdle"]
+[node name="armpistol" type="Sprite2D" parent="Cyborg/CyborgIdlePistol"]
 z_index = -1
 texture_filter = 1
 position = Vector2(-8.33333, 1.11111)
 texture = ExtResource("3_0igx5")
 offset = Vector2(11, 0)
 
-[node name="CyborgRun" type="Sprite2D" parent="Cyborg"]
+[node name="CyborgRunPistol" type="Sprite2D" parent="Cyborg"]
 unique_name_in_owner = true
+visible = false
 texture_filter = 1
 texture = ExtResource("4_tw2bh")
 offset = Vector2(6, 0)
 hframes = 6
 
-[node name="gun2" type="Sprite2D" parent="Cyborg/CyborgRun"]
+[node name="pistol" type="Sprite2D" parent="Cyborg/CyborgRunPistol"]
 z_index = -1
 texture_filter = 1
 position = Vector2(11.6667, 5.96046e-08)
@@ -236,7 +299,53 @@ scale = Vector2(0.5625, 0.5625)
 texture = ExtResource("2_lurov")
 offset = Vector2(7, 0)
 
-[node name="arm2" type="Sprite2D" parent="Cyborg/CyborgRun"]
+[node name="armpistol" type="Sprite2D" parent="Cyborg/CyborgRunPistol"]
+z_index = -1
+texture_filter = 1
+position = Vector2(-5, 5)
+texture = ExtResource("3_0igx5")
+offset = Vector2(8, 0)
+
+[node name="CyborgIdleShotgun" type="Sprite2D" parent="Cyborg"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+texture = ExtResource("1_nry8j")
+offset = Vector2(11, 0)
+hframes = 4
+
+[node name="shotgun" type="Sprite2D" parent="Cyborg/CyborgIdleShotgun"]
+z_index = -1
+texture_filter = 1
+position = Vector2(5, -3.33333)
+scale = Vector2(0.5625, 0.5625)
+texture = ExtResource("8_vprq8")
+offset = Vector2(11, 0)
+
+[node name="armshotgun" type="Sprite2D" parent="Cyborg/CyborgIdleShotgun"]
+z_index = -1
+texture_filter = 1
+position = Vector2(-8.33333, 1.11111)
+texture = ExtResource("3_0igx5")
+offset = Vector2(11, 0)
+
+[node name="CyborgRunShotgun" type="Sprite2D" parent="Cyborg"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+texture = ExtResource("4_tw2bh")
+offset = Vector2(6, 0)
+hframes = 6
+
+[node name="shotgun" type="Sprite2D" parent="Cyborg/CyborgRunShotgun"]
+z_index = -1
+texture_filter = 1
+position = Vector2(7.77778, 0.555556)
+scale = Vector2(0.5625, 0.5625)
+texture = ExtResource("8_vprq8")
+offset = Vector2(7, 0)
+
+[node name="armshotgun" type="Sprite2D" parent="Cyborg/CyborgRunShotgun"]
 z_index = -1
 texture_filter = 1
 position = Vector2(-5, 5)
@@ -262,6 +371,7 @@ hframes = 6
 
 [node name="Hurtbox" type="Area2D" parent="."]
 unique_name_in_owner = true
+visible = false
 position = Vector2(1.11111, 6.66667)
 collision_mask = 2
 
@@ -280,14 +390,17 @@ editor_draw_limits = true
 [node name="ShootingPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-18.8889, -1.66667)
+rotation = -0.143117
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
+visible = false
 position = Vector2(1, 6.667)
 shape = SubResource("RectangleShape2D_81m80")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
+visible = false
 offset_left = -20.0
 offset_top = -19.0
 offset_right = 21.0

@@ -5,6 +5,8 @@ signal health_depleted
 var health = 100
 var speed = 350
 var damage = 1
+var selected_slot = 1
+ 
 
 func _physics_process(delta):
 	var direction = Input.get_vector("move_left","move_right","move_up","move_down")
@@ -46,6 +48,22 @@ func _physics_process(delta):
 			%ShootingPoint.position.x = -18.889
 			%ShootingPoint.position.y = -1.667
 	
+	if Input.is_action_just_pressed("slot1"):
+		selected_slot = 1
+		%CyborgIdleShotgun.visible = false
+		%CyborgRunShotgun.visible = false
+		%CyborgIdlePistol.visible = true
+		%CyborgRunPistol.visible = true	
+
+
+	if Input.is_action_just_pressed("slot2"):
+		selected_slot = 2
+		%CyborgIdleShotgun.visible = true
+		%CyborgRunShotgun.visible = true
+		%CyborgIdlePistol.visible = false
+		%CyborgRunPistol.visible = false		
+
+
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
 	# For Gun smoke animation on shoot, does not work, stuck on first frame
@@ -65,7 +83,34 @@ func increase_health():
 	health += 25
 	print("health increased")
 
-func shoot():
-	const BULLET = preload("res://bullet.tscn")
-	var new_bullet = BULLET.instantiate()
-	%ShootingPoint.add_child(new_bullet)
+func shoot(): # Normal fire for pistol, special fire for shotgun
+	if selected_slot == 1:
+		print("shooting with pistol") # testing
+		const BULLET = preload("res://bullet.tscn")
+		var new_bullet = BULLET.instantiate()
+		%ShootingPoint.add_child(new_bullet)
+		
+	elif selected_slot == 2:								# TRYING TO SHOOT 3 BULLETS AT THE SAME TIME IN DIFFERENT DIRECTIONS
+		print("shooting with shotgun") # testing			# DOES NOT WORK, ALL 3 BULLET SPAWN AT THE SAME TIME AND FLY IN THE EXACT SAME DIRECTION
+		const BULLET = preload("res://bullet.tscn")
+		for i in range(3): # Shoot 3 bullets
+			var new_bullet = BULLET.instantiate()
+			%ShootingPoint.rotation_degrees = randf_range(-30,30)
+			%ShootingPoint.add_child(new_bullet)
+
+			
+
+
+
+# #SHOOT FUNCTION BACKUP
+# func shoot(): # Normal fire for pistol, special fire for shotgun
+# 	if selected_slot == 1:
+# 		print("shooting with pistol") #testing
+# 		const BULLET = preload("res://bullet.tscn")
+# 		var new_bullet = BULLET.instantiate()
+# 		%ShootingPoint.add_child(new_bullet)
+# 	if selected_slot == 2:
+# 		print("shooting with shotgun")#testing
+# 		const BULLET = preload("res://bullet.tscn")
+# 		var new_bullet = BULLET.instantiate()
+# 		%ShootingPoint.add_child(new_bullet)
