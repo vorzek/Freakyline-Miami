@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b7f3a4tawv5ow"
+path="res://.godot/imported/Y2meta.app - Cyberpunk_ Edgerunners _ “I Really Want to Stay At Your House” by Rosa Walton _ Music Video (128 kbps).mp3-81851f5e10a08a2ee44a942bebcd6676.mp3str"
+
+[deps]
+
+source_file="res://Assets/Y2meta.app - Cyberpunk_ Edgerunners _ “I Really Want to Stay At Your House” by Rosa Walton _ Music Video (128 kbps).mp3"
+dest_files=["res://.godot/imported/Y2meta.app - Cyberpunk_ Edgerunners _ “I Really Want to Stay At Your House” by Rosa Walton _ Music Video (128 kbps).mp3-81851f5e10a08a2ee44a942bebcd6676.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

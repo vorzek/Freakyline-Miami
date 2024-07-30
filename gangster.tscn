@@ -1,0 +1,163 @@
+[gd_scene load_steps=10 format=3 uid="uid://st6424xwvx60"]
+
+[ext_resource type="Texture2D" uid="uid://dxdkjisps0lbt" path="res://Assets/Weapons/1 Characters/2 Punk/Run_attack.png" id="1_k3rts"]
+[ext_resource type="Script" path="res://gangster.gd" id="1_p8d28"]
+[ext_resource type="Script" path="res://Punk.gd" id="1_prnr3"]
+[ext_resource type="Texture2D" uid="uid://gmdihbyxoe2i" path="res://Assets/Weapons/2 Weapons/4 Run_attack/4.png" id="2_v0hyn"]
+
+[sub_resource type="Animation" id="Animation_avm8k"]
+resource_name = "PunkHurt"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PunkRun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PunkRun/AttackRun:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PunkRun:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0.247059, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_er6xy"]
+resource_name = "PunkRun"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PunkRun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PunkRun/AttackRun:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_mtpeo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PunkRun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PunkRun/AttackRun:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PunkRun:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bdon1"]
+_data = {
+"PunkHurt": SubResource("Animation_avm8k"),
+"PunkRun": SubResource("Animation_er6xy"),
+"RESET": SubResource("Animation_mtpeo")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yct23"]
+size = Vector2(26.25, 34)
+
+[node name="Gangster" type="CharacterBody2D"]
+position = Vector2(15, 6)
+scale = Vector2(1.8, 1.8)
+collision_layer = 2
+collision_mask = 3
+platform_floor_layers = 4294967040
+script = ExtResource("1_p8d28")
+
+[node name="Punk" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(4, 7)
+script = ExtResource("1_prnr3")
+
+[node name="EnemyAnimationPlayer" type="AnimationPlayer" parent="Punk"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_bdon1")
+}
+
+[node name="PunkRun" type="Sprite2D" parent="Punk"]
+texture_filter = 1
+position = Vector2(5, -1)
+texture = ExtResource("1_k3rts")
+hframes = 6
+
+[node name="AttackRun" type="Sprite2D" parent="Punk/PunkRun"]
+z_index = -1
+texture_filter = 1
+position = Vector2(-2, 2)
+texture = ExtResource("2_v0hyn")
+hframes = 6
+
+[node name="EnemyHurtBox" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0.875, 13)
+shape = SubResource("RectangleShape2D_yct23")
+
+[connection signal="animation_finished" from="Punk/EnemyAnimationPlayer" to="." method="_on_enemy_animation_player_animation_finished"]

@@ -1,0 +1,156 @@
+[gd_scene load_steps=12 format=3 uid="uid://dhgb3d43pomnh"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_3mfl8"]
+[ext_resource type="Texture2D" uid="uid://wxjcbe4kpuh1" path="res://Assets/Weapons/Guns/1 Characters/3 Cyborg/Idle1.png" id="1_nry8j"]
+[ext_resource type="Script" path="res://Cyborg.gd" id="2_hlwao"]
+[ext_resource type="Texture2D" uid="uid://txm6auma5nmt" path="res://Assets/Weapons/Guns/2 Guns/9_1.png" id="2_lurov"]
+[ext_resource type="Texture2D" uid="uid://dwyi7na215vmo" path="res://Assets/Weapons/Guns/3 Hands/3 Cyborg/3.png" id="3_0igx5"]
+[ext_resource type="Texture2D" uid="uid://e48o7uhmoxxi" path="res://Assets/Weapons/Guns/1 Characters/3 Cyborg/Run1.png" id="4_tw2bh"]
+
+[sub_resource type="Animation" id="Animation_0vels"]
+resource_name = "Idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cyborg/CyborgIdle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_cr2up"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cyborg/CyborgIdle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cyborg/CyborgRun:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_a3ktc"]
+resource_name = "Run"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cyborg/CyborgRun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q0euh"]
+_data = {
+"Idle": SubResource("Animation_0vels"),
+"RESET": SubResource("Animation_cr2up"),
+"Run": SubResource("Animation_a3ktc")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81m80"]
+size = Vector2(26, 36)
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(1.8, 1.8)
+platform_floor_layers = 4294967040
+script = ExtResource("1_3mfl8")
+
+[node name="Cyborg" type="Node2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+script = ExtResource("2_hlwao")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cyborg"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_q0euh")
+}
+speed_scale = 0.7
+
+[node name="CyborgIdle" type="Sprite2D" parent="Cyborg"]
+unique_name_in_owner = true
+texture_filter = 1
+texture = ExtResource("1_nry8j")
+hframes = 4
+
+[node name="gun" type="Sprite2D" parent="Cyborg/CyborgIdle"]
+z_index = -1
+texture_filter = 1
+position = Vector2(5, -3)
+scale = Vector2(0.5625, 0.5625)
+texture = ExtResource("2_lurov")
+
+[node name="arm" type="Sprite2D" parent="Cyborg/CyborgIdle"]
+z_index = -1
+texture_filter = 1
+position = Vector2(-8, 1)
+texture = ExtResource("3_0igx5")
+
+[node name="CyborgRun" type="Sprite2D" parent="Cyborg"]
+unique_name_in_owner = true
+texture_filter = 1
+texture = ExtResource("4_tw2bh")
+hframes = 6
+
+[node name="gun2" type="Sprite2D" parent="Cyborg/CyborgRun"]
+z_index = -1
+texture_filter = 1
+position = Vector2(8, 1)
+scale = Vector2(0.5625, 0.5625)
+texture = ExtResource("2_lurov")
+
+[node name="arm2" type="Sprite2D" parent="Cyborg/CyborgRun"]
+z_index = -1
+texture_filter = 1
+position = Vector2(-5, 5)
+texture = ExtResource("3_0igx5")
+
+[node name="HurtBox" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-10, 7)
+shape = SubResource("RectangleShape2D_81m80")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -784
+limit_top = -784
+limit_right = 784
+limit_bottom = 784
+limit_smoothed = true
+editor_draw_limits = true
+
+[node name="ShootingPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-10.5556, 7.77778)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+unique_name_in_owner = true
+target_position = Vector2(50, 0)
