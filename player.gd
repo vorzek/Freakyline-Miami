@@ -19,6 +19,7 @@ func _physics_process(delta):
 		%Cyborg.play_idle_animation()
 	
 	#Health Bars
+	%HealthBar.visible = true
 	%HealthBar.value = health
 	%Overheal.value = health
 	if health > 100:
@@ -85,32 +86,12 @@ func increase_health():
 
 func shoot(): # Normal fire for pistol, special fire for shotgun
 	if selected_slot == 1:
-		print("shooting with pistol") # testing
 		const BULLET = preload("res://bullet.tscn")
 		var new_bullet = BULLET.instantiate()
 		%ShootingPoint.add_child(new_bullet)
 		
-	elif selected_slot == 2:								# TRYING TO SHOOT 3 BULLETS AT THE SAME TIME IN DIFFERENT DIRECTIONS
-		print("shooting with shotgun") # testing			# DOES NOT WORK, ALL 3 BULLET SPAWN AT THE SAME TIME AND FLY IN THE EXACT SAME DIRECTION
-		const BULLET = preload("res://bullet.tscn")
+	elif selected_slot == 2:								
+		const SHOTGUNBULLET = preload("res://ShotgunBullet.tscn")
 		for i in range(3): # Shoot 3 bullets
-			var new_bullet = BULLET.instantiate()
-			%ShootingPoint.rotation_degrees = randf_range(-30,30)
-			%ShootingPoint.add_child(new_bullet)
-
-			
-
-
-
-# #SHOOT FUNCTION BACKUP
-# func shoot(): # Normal fire for pistol, special fire for shotgun
-# 	if selected_slot == 1:
-# 		print("shooting with pistol") #testing
-# 		const BULLET = preload("res://bullet.tscn")
-# 		var new_bullet = BULLET.instantiate()
-# 		%ShootingPoint.add_child(new_bullet)
-# 	if selected_slot == 2:
-# 		print("shooting with shotgun")#testing
-# 		const BULLET = preload("res://bullet.tscn")
-# 		var new_bullet = BULLET.instantiate()
-# 		%ShootingPoint.add_child(new_bullet)
+			var new_shotgunbullet = SHOTGUNBULLET.instantiate()
+			%ShootingPoint.add_child(new_shotgunbullet)

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://coie0m82fwaa"]
+
+[ext_resource type="Script" path="res://ShotgunBullet.gd" id="1_hepwg"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4xwop"]
+load_path = "res://.godot/imported/1.png-c63269d886a302034688f78e0e62eb57.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ij47"]
+size = Vector2(6, 4)
+
+[node name="ShotgunBullet" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_hepwg")
+
+[node name="ShotgunBullet" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("CompressedTexture2D_4xwop")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7ij47")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

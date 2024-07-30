@@ -54,6 +54,40 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_0vels"]
+resource_name = "IdlePistol"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cyborg/CyborgIdlePistol:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_8fqe0"]
+resource_name = "IdleShotgun"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cyborg/CyborgIdleShotgun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
 [sub_resource type="Animation" id="Animation_cr2up"]
 length = 0.001
 tracks/0/type = "value"
@@ -141,23 +175,6 @@ tracks/6/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_0vels"]
-resource_name = "IdlePistol"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cyborg/CyborgIdlePistol:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
 [sub_resource type="Animation" id="Animation_a3ktc"]
 resource_name = "RunPistol"
 length = 0.5
@@ -173,23 +190,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4]
-}
-
-[sub_resource type="Animation" id="Animation_8fqe0"]
-resource_name = "IdleShotgun"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cyborg/CyborgIdleShotgun:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_novyn"]
@@ -371,7 +371,6 @@ hframes = 6
 
 [node name="Hurtbox" type="Area2D" parent="."]
 unique_name_in_owner = true
-visible = false
 position = Vector2(1.11111, 6.66667)
 collision_mask = 2
 
@@ -390,11 +389,9 @@ editor_draw_limits = true
 [node name="ShootingPoint" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(-18.8889, -1.66667)
-rotation = -0.143117
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
-visible = false
 position = Vector2(1, 6.667)
 shape = SubResource("RectangleShape2D_81m80")
 

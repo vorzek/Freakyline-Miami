@@ -4,14 +4,15 @@ var travelled_distance = 0
 var direction = Vector2.ZERO
 
 func _ready():
-	# Calculate the direction towards the mouse position
+	print("shooting normal bullet")
+	# check direction towards mouse
 	var mouse_position = get_global_mouse_position()
 	direction = (mouse_position - global_position).normalized()
-	# Set the rotation of the bullet to match the direction
+	# match rotation to direction
 	rotation = direction.angle()
-	
+
 func _physics_process(delta):
-	const SPEED = 1000
+	const SPEED = 500
 	const RANGE = 1200
 	
 	position += direction * SPEED * delta
