@@ -4,6 +4,7 @@ var health = 3
 
 @onready var player = get_node("/root/Game/Player")
 @onready var Score = get_node("/root/Game/ScoreSystem/Score")
+@onready var Currency = get_node("/root/Game/CurrencySystem/Currency")
 
 func _ready():
 	add_to_group("enemies")
@@ -28,6 +29,8 @@ func take_damage():
 	if health == 0:
 		queue_free()
 		Score.increment_score()
+		Currency.increment_currency()
+		
 	#else:
 		#is_hurt = false
 		#%Punk.play_run_animation()

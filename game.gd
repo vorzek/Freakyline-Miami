@@ -9,11 +9,10 @@ var enemies_per_wave = 2
 
 func _ready():
 	spawn_wave() #initial wave
-	%ScoreSystem.visible = true
+	%ScoreSystem.visible = true #ensure score is shown
+	%CurrencySystem.visible = true #ensure currency is shown
 
-func _on_player_health_depleted():
-	#%GameOver.visible = true
-	#%GameOver/ColorRect/Game_Over.show_final_score()
+func _on_player_health_depleted(): #on death
 	get_tree().paused = true
 	%ScoreSystem.visible = false
 	%GameOver.visible = true
@@ -42,7 +41,7 @@ func wave_system():
 		current_wave += 1
 		%ScoreSystem/Wave.increment_wave()
 		spawn_wave()
-		
+
 func spawn_pickup():
 	var new_pickup = pickup.instantiate()
 	%PathFollow2D.progress_ratio = randf()
