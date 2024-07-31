@@ -18,7 +18,6 @@ config/icon="res://Assets/background.png"
 
 [display]
 
-window/size/always_on_top=true
 window/stretch/mode="viewport"
 mouse_cursor/custom_image="res://Assets/GUI/8 Cursors/2.png"
 

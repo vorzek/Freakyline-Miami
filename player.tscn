@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dhgb3d43pomnh"]
+[gd_scene load_steps=31 format=3 uid="uid://dhgb3d43pomnh"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_3mfl8"]
 [ext_resource type="Texture2D" uid="uid://wxjcbe4kpuh1" path="res://Assets/Weapons/Guns/1 Characters/3 Cyborg/Idle1.png" id="1_nry8j"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dwyi7na215vmo" path="res://Assets/Weapons/Guns/3 Hands/3 Cyborg/3.png" id="3_0igx5"]
 [ext_resource type="Texture2D" uid="uid://e48o7uhmoxxi" path="res://Assets/Weapons/Guns/1 Characters/3 Cyborg/Run1.png" id="4_tw2bh"]
 [ext_resource type="Texture2D" uid="uid://b8ljs1up5utj8" path="res://Assets/Weapons/Guns/4 Shoot_effects/6_1.png" id="7_sak2p"]
+[ext_resource type="Texture2D" uid="uid://cga7omjgvvqs8" path="res://Assets/Weapons/Guns/2 Guns/8_1.png" id="8_5spkq"]
 [ext_resource type="Texture2D" uid="uid://cifenjurd8gxj" path="res://Assets/Weapons/Guns/2 Guns/10_1.png" id="8_vprq8"]
 
 [sub_resource type="Animation" id="Animation_gy6s0"]
@@ -174,6 +175,30 @@ tracks/6/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Cyborg/CyborgIdleMG:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Cyborg/CyborgRunMG:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_a3ktc"]
 resource_name = "RunPistol"
@@ -209,16 +234,64 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4]
 }
 
+[sub_resource type="Animation" id="Animation_jmbla"]
+resource_name = "IdleMG"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cyborg/CyborgIdleMG:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 3]
+}
+
+[sub_resource type="Animation" id="Animation_d6txr"]
+resource_name = "RunMG"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cyborg/CyborgRunMG:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q0euh"]
 _data = {
 "GunSmokeIdle": SubResource("Animation_gy6s0"),
 "GunSmokeRun": SubResource("Animation_qx2a5"),
+"IdleMG": SubResource("Animation_jmbla"),
 "IdlePistol": SubResource("Animation_0vels"),
 "IdleShotgun": SubResource("Animation_8fqe0"),
 "RESET": SubResource("Animation_cr2up"),
+"RunMG": SubResource("Animation_d6txr"),
 "RunPistol": SubResource("Animation_a3ktc"),
 "RunShotgun": SubResource("Animation_novyn")
 }
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_cnlbm"]
+load_path = "res://.godot/imported/Idle1.png-5368e5deae3ffc983d2426963e5044f1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1rwad"]
+load_path = "res://.godot/imported/3.png-a57a4f54370e68f7b30d0332d4379cfd.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ko588"]
+load_path = "res://.godot/imported/Run1.png-206b2591abfed71807f80efccc9f70ec.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s8jd0"]
+load_path = "res://.godot/imported/3.png-a57a4f54370e68f7b30d0332d4379cfd.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ud4f6"]
 load_path = "res://.godot/imported/6_1.png-b48c38bc5375177bf5ea0cf1ee753468.ctex"
@@ -352,6 +425,52 @@ position = Vector2(-5, 5)
 texture = ExtResource("3_0igx5")
 offset = Vector2(8, 0)
 
+[node name="CyborgIdleMG" type="Sprite2D" parent="Cyborg"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+texture = SubResource("CompressedTexture2D_cnlbm")
+offset = Vector2(11, 0)
+hframes = 4
+
+[node name="MG" type="Sprite2D" parent="Cyborg/CyborgIdleMG"]
+z_index = -1
+texture_filter = 1
+position = Vector2(5, -3.88889)
+scale = Vector2(0.5625, 0.5625)
+texture = ExtResource("8_5spkq")
+offset = Vector2(11, 0)
+
+[node name="armMG" type="Sprite2D" parent="Cyborg/CyborgIdleMG"]
+z_index = -1
+texture_filter = 1
+position = Vector2(-8.33333, 1.11111)
+texture = SubResource("CompressedTexture2D_1rwad")
+offset = Vector2(11, 0)
+
+[node name="CyborgRunMG" type="Sprite2D" parent="Cyborg"]
+unique_name_in_owner = true
+visible = false
+texture_filter = 1
+texture = SubResource("CompressedTexture2D_ko588")
+offset = Vector2(6, 0)
+hframes = 6
+
+[node name="MG" type="Sprite2D" parent="Cyborg/CyborgRunMG"]
+z_index = -1
+texture_filter = 1
+position = Vector2(7.77778, 0)
+scale = Vector2(0.5625, 0.5625)
+texture = ExtResource("8_5spkq")
+offset = Vector2(7, 0)
+
+[node name="armMG" type="Sprite2D" parent="Cyborg/CyborgRunMG"]
+z_index = -1
+texture_filter = 1
+position = Vector2(-5, 5)
+texture = SubResource("CompressedTexture2D_s8jd0")
+offset = Vector2(8, 0)
+
 [node name="GunSmokeIdle" type="Sprite2D" parent="Cyborg"]
 unique_name_in_owner = true
 visible = false
@@ -397,7 +516,6 @@ shape = SubResource("RectangleShape2D_81m80")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 unique_name_in_owner = true
-visible = false
 offset_left = -20.0
 offset_top = -19.0
 offset_right = 21.0
@@ -411,7 +529,6 @@ show_percentage = false
 
 [node name="Overheal" type="ProgressBar" parent="HealthBar"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
 offset_top = -5.44444
 offset_right = 41.0
@@ -424,3 +541,10 @@ step = 1.0
 value = 100.0
 allow_greater = true
 show_percentage = false
+
+[node name="fast_shoot_timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.15
+autostart = true
+
+[connection signal="timeout" from="fast_shoot_timer" to="." method="_on_fast_shoot_timer_timeout"]

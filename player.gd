@@ -55,6 +55,8 @@ func _physics_process(delta):
 		%CyborgRunShotgun.visible = false
 		%CyborgIdlePistol.visible = true
 		%CyborgRunPistol.visible = true	
+		%CyborgRunMG.visible = false		
+		%CyborgIdleMG.visible = false	
 
 
 	if Input.is_action_just_pressed("slot2"):
@@ -62,11 +64,24 @@ func _physics_process(delta):
 		%CyborgIdleShotgun.visible = true
 		%CyborgRunShotgun.visible = true
 		%CyborgIdlePistol.visible = false
-		%CyborgRunPistol.visible = false		
+		%CyborgRunPistol.visible = false
+		%CyborgRunMG.visible = false		
+		%CyborgIdleMG.visible = false	
 
+	if Input.is_action_just_pressed("slot3"):
+		selected_slot = 3
+		%CyborgIdleShotgun.visible = false
+		%CyborgRunShotgun.visible = false
+		%CyborgIdlePistol.visible = false
+		%CyborgRunPistol.visible = false
+		%CyborgRunMG.visible = true		
+		%CyborgIdleMG.visible = true	
 
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
+
+	# if Input.is_action_pressed("shoot"):
+	# 	_on_fast_shoot_timer_timeout()
 	# For Gun smoke animation on shoot, does not work, stuck on first frame
 		#if velocity.length() > 0.0:
 			#%Cyborg.play_GunSmokeRun_animation()
@@ -85,6 +100,7 @@ func increase_health():
 	print("health increased")
 
 func shoot(): # Normal fire for pistol, special fire for shotgun
+	print("shooting")
 	if selected_slot == 1:
 		const BULLET = preload("res://bullet.tscn")
 		var new_bullet = BULLET.instantiate()
@@ -95,3 +111,11 @@ func shoot(): # Normal fire for pistol, special fire for shotgun
 		for i in range(3): # Shoot 3 bullets
 			var new_shotgunbullet = SHOTGUNBULLET.instantiate()
 			%ShootingPoint.add_child(new_shotgunbullet)
+
+
+func _on_fast_shoot_timer_timeout(): # For MG shooting, can increase fire rate by changing timer wait time
+	if Input.is_action_pressed("shoot"):       # Still kinda unresponsive tho since first bullet will wait for timer to trigger, so it wont trigger on click
+		if selected_slot == 3:
+			const MGBULLET = preload("res://ShotgunBullet.tscn")
+			var new_mgbullet = MGBULLET.instantiate()
+			%ShootingPoint.add_child(new_mgbullet)
