@@ -1,0 +1,97 @@
+[gd_scene load_steps=10 format=3 uid="uid://cp43awjxe63ia"]
+
+[ext_resource type="Script" path="res://merchant.gd" id="1_mespb"]
+[ext_resource type="Texture2D" uid="uid://bm0mtqfyjxkuj" path="res://Assets/Character/1 Biker/Biker_idle.png" id="1_xnma4"]
+[ext_resource type="Script" path="res://BikerIdle.gd" id="2_mik7v"]
+[ext_resource type="FontFile" uid="uid://cre2gqhj7j6r4" path="res://Assets/GUI/10 Font/CyberpunkCraftpixPixel.otf" id="4_3mcla"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkpa1"]
+size = Vector2(38, 62.5)
+
+[sub_resource type="Animation" id="Animation_3b8qs"]
+resource_name = "MerchantIdle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BikerIdle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_8xj4w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BikerIdle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r08a1"]
+_data = {
+"MerchantIdle": SubResource("Animation_3b8qs"),
+"RESET": SubResource("Animation_8xj4w")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nwf2"]
+size = Vector2(190, 158)
+
+[node name="Merchant" type="CharacterBody2D"]
+script = ExtResource("1_mespb")
+
+[node name="BikerIdle" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture_filter = 1
+position = Vector2(-1, 0)
+scale = Vector2(1.8, 1.8)
+texture = ExtResource("1_xnma4")
+offset = Vector2(11, 0)
+hframes = 4
+script = ExtResource("2_mik7v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 12.75)
+shape = SubResource("RectangleShape2D_gkpa1")
+
+[node name="MerchantAnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_r08a1")
+}
+
+[node name="InteractionRange" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionRange"]
+position = Vector2(1, 11)
+shape = SubResource("RectangleShape2D_5nwf2")
+debug_color = Color(0.85007, 0.192782, 0.783927, 0.42)
+
+[node name="TextBubble" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = -47.0
+offset_top = -51.0
+offset_right = 54.0
+offset_bottom = -23.0
+theme_override_fonts/font = ExtResource("4_3mcla")
+theme_override_font_sizes/font_size = 26
+text = "Hello!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="area_entered" from="InteractionRange" to="." method="_on_interaction_range_area_entered"]
+[connection signal="area_exited" from="InteractionRange" to="." method="_on_interaction_range_area_exited"]
